@@ -38,8 +38,8 @@ export default {
       e.preventDefault();
 
       axios
-        .get(`http://localhost:3000/music/lyrics?artist=${artist.value}&song=${song.value}`)
-        .then((res) => console.log(res.lyrics));
+        .get(`/music/lyrics?artist=${artist.value}&song=${song.value}`)
+        .then((res) => console.log(res));
     };
 
     return {
