@@ -10,6 +10,9 @@ module.exports = {
       spacing: {
         form: '30rem',
       },
+      margin: {
+        '-94': '-21.5rem',
+      },
     },
     fontFamily: {
       VarelaRound: ['Varela Round', 'sans-serif'],

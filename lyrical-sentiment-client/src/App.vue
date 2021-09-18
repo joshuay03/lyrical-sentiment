@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="font-VarelaRound">
     <router-link to="/"></router-link>
     <router-view></router-view>
   </div>
