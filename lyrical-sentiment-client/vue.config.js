@@ -1,6 +1,8 @@
 module.exports = {
   devServer: {
-    // This will forward any request that does not match a static file to localhost:3000
+    // AWS instance public address
+    // proxy: 'http://3.25.59.158:3000',
+    // localhost
     proxy: 'http://localhost:3000',
   },
 };
