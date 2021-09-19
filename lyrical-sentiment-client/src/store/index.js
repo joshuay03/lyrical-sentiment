@@ -14,8 +14,8 @@ const store = createStore({
           song: 'Adventure of a Lifetime',
         },
         {
-          artist: 'Eric Clapton',
-          song: 'Tears in Heaven',
+          artist: 'The Weeknd',
+          song: 'Blinding Lights',
         },
         {
           artist: 'Ed Sheeran',
@@ -34,12 +34,12 @@ const store = createStore({
           song: 'Imagine',
         },
         {
-          artist: 'Don Mclean',
-          song: 'American Pie',
+          artist: 'Maroon 5',
+          song: 'Memories',
         },
         {
-          artist: 'Bonnie Tylor',
-          song: 'Holding out for a Hero',
+          artist: 'Dean Lewis',
+          song: 'Waves',
         },
         {
           artist: 'John Legend',

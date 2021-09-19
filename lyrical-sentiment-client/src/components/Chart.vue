@@ -23,6 +23,10 @@ export default {
         datasets: [
           {
             data: props.scores,
+            borderColor: 'rgb(0, 0, 255)',
+            pointBackgroundColor: 'rgb(255, 0, 0)',
+            pointRadius: 5,
+            pointHitRadius: 12,
           },
         ],
       },
@@ -31,9 +35,41 @@ export default {
           x: {
             ticks: {
               autoSkip: false,
-              maxRotation: 80,
-              minRotation: 80,
+              maxRotation: 75,
+              minRotation: 75,
+              color: 'rgb(0, 0, 0)',
+              font: {
+                size: 16,
+              },
             },
+            grid: {
+              color: 'rgb(30, 60, 100)',
+            },
+          },
+          y: {
+            ticks: {
+              color: 'rgb(0, 0, 0)',
+              font: {
+                size: 16,
+              },
+            },
+            grid: {
+              color: 'rgb(30, 60, 100)',
+            },
+          },
+        },
+        plugins: {
+          title: {
+            display: true,
+            text: 'Sentiment Score of Lyrics',
+            font: {
+              size: 20,
+            },
+            padding: 30,
+            color: 'rgb(0, 0, 0)',
+          },
+          legend: {
+            display: false,
           },
         },
       },

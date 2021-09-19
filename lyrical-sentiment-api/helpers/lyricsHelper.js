@@ -15,7 +15,7 @@ const replaceStringUsingIndex = (string, index, replacement) => {
  * Takes the lyrics of a song as a string and breaks it up into individual
  * sentences
  * @param {string} lyrics the music lyrics to be converted
- * @returns the modified lyrics as sentences
+ * @returns the modified lyrics as a string
  */
 const convertLyricsToSentences = (lyrics) => {
   let count = 0;
@@ -42,10 +42,11 @@ const convertLyricsToSentences = (lyrics) => {
     }
   }
   lyrics = lyrics.slice(first + 1);
+
   return lyrics;
 }
 
 module.exports = {
   replaceStringUsingIndex,
-  convertLyricsToSentences
+  convertLyricsToSentences,
 }

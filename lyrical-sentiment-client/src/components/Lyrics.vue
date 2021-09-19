@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen w-screen bg-purple-400">
+  <div class="h-screen w-screen bg-purple-300">
     <div class="grid grid-cols-3 pl-12" v-if="!state.loading">
       <div class="mt-64">
         <span class="text-3xl">Some Options</span>
@@ -14,14 +14,14 @@
       </div>
 
       <div class="mt-64 grid place-items-center">
-        <span class="text-3xl grid place-items-center mb-12">Enter 5 Songs to Analyse</span>
+        <span class="text-3xl grid place-items-center mb-12">Select Songs to Analyse</span>
         <form class="grid grid-rows-6 w-form" v-on:submit="searchLyrics">
           <div class="relative">
             <label class="absolute bottom-1 left-0 text-3xl">Artist</label>
           </div>
           <div class="w-full">
             <input class="w-full border-2 border-gray-500 bg-blue-200 rounded-md h-12 pl-2 text-xl"
-              type="text" required v-model="state.selecteArtist">
+              type="text" required v-model="state.selectedArtist">
           </div>
           <div class="relative">
             <label class="absolute bottom-1 left-0 text-3xl">Song</label>
@@ -33,10 +33,11 @@
           <div></div>
           <div class="grid place-items-center grid-cols-2">
             <input class="w-24 h-12 rounded-lg text-xl cursor-pointer hover:bg-blue-200"
-              type="button" value="Add" :disabled="state.musicList.length === 5" @click="addMusic">
+              type="button" value="Add" :disabled="state.musicList.length === 5"
+              @click="addMusic">
             <input class="w-24 h-12 rounded-lg text-xl cursor-pointer hover:bg-blue-200"
-              type="button" value="Analyse" :disabled="state.musicList.length !== 5"
-              @click="searchLyrics">
+              type="button" value="Analyse" @click="searchLyrics"
+              :disabled="!state.musicList || state.musicList.length === 0">
           </div>
         </form>
       </div>
@@ -58,8 +59,15 @@
       </div>
     </div>
 
-    <div v-if="state.loading">
-      test
+    <div class="grid place-content-center h-full w-full text-4xl" v-if="state.loading">
+      <div class="flex">
+        <div style="border-top-color:transparent"
+        class="w-14 h-14 border-4 border-red-700 border-dashed rounded-full animate-spin">
+        </div>
+        <span class="pl-6 pt-2">
+          Analysing
+        </span>
+      </div>
     </div>
   </div>
 </template>
@@ -85,15 +93,14 @@ export default {
 
     const addMusic = (music) => {
       if (state.musicList.length < 5) {
-        if (music) state.musicList.push(music);
-        else if (state.selectedArtist && state.selectedSong) {
+        if (state.selectedArtist && state.selectedSong) {
           state.musicList.push({
             artist: state.selectedArtist,
             song: state.selectedSong,
           });
           state.selectedArtist = '';
           state.selectedSong = '';
-        }
+        } else if (music) state.musicList.push(music);
       } else {
         alert('Music List has a max limit of 5 songs!');
       }
@@ -123,7 +130,11 @@ export default {
       axios
         .get(`/music/lyrics?numSongs=${state.musicList.length}&${musicListQuery}`)
         .then((res) => store.commit('updateData', res.data))
-        .then(() => router.push({ name: 'Sentiment' }));
+        .then(() => router.push({ name: 'Sentiment' }))
+        .catch((err) => {
+          alert(`Error: ${err.response.data}`);
+          state.loading = false;
+        });
     };
 
     return {
