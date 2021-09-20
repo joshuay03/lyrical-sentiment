@@ -13,20 +13,29 @@ import Vue3ChartJs from '@pathscale/vue3-chartjs';
 export default {
   name: 'Chart',
   components: { Vue3ChartJs },
-  props: ['sentences', 'scores'],
+  props: ['labels', 'scoreData', 'magnitudeData', 'title'],
   setup(props) {
     const chart = {
       id: 'line',
       type: 'line',
       data: {
-        labels: props.sentences,
+        labels: props.labels,
         datasets: [
           {
-            data: props.scores,
-            borderColor: 'rgb(0, 0, 255)',
-            pointBackgroundColor: 'rgb(255, 0, 0)',
+            data: props.scoreData,
+            borderColor: 'rgb(0, 0, 230)',
+            pointBackgroundColor: 'rgb(225, 0, 0)',
             pointRadius: 5,
             pointHitRadius: 12,
+            label: 'Sentiment score',
+          },
+          {
+            data: props.magnitudeData,
+            borderColor: 'rgb(0, 200, 0)',
+            pointBackgroundColor: 'rgb(225, 0, 0)',
+            pointRadius: 5,
+            pointHitRadius: 12,
+            label: 'Sentiment Magnitude',
           },
         ],
       },
@@ -61,7 +70,7 @@ export default {
         plugins: {
           title: {
             display: true,
-            text: 'Sentiment Score of Lyrics',
+            text: props.title,
             font: {
               size: 20,
             },
@@ -69,7 +78,9 @@ export default {
             color: 'rgb(0, 0, 0)',
           },
           legend: {
-            display: false,
+            labels: {
+              color: 'rgb(0, 0, 0)',
+            },
           },
         },
       },

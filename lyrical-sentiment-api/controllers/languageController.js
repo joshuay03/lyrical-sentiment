@@ -14,7 +14,7 @@ const search = async (req, res, next) => {
   async function getSentimentData() {
     for (let i = 0; i < res.locals.lyricsList.length; i++) {
       const document = {
-        content: res.locals.lyricsList[i].lyrics,
+        content: res.locals.lyricsList[i].formattedLyrics,
         type: 'PLAIN_TEXT',
       };
 
@@ -26,7 +26,7 @@ const search = async (req, res, next) => {
 
   await getSentimentData();
 
-  res.status(200).json(res.locals.lyricsList);
+  res.status(200).json(res.locals.lyricsList).end();
 };
 
 module.exports = {

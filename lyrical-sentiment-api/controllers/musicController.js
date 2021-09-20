@@ -18,7 +18,7 @@ const get = async (req, res, next) => {
           if (lyricsErrorHelper.getErrorStatusCode(err.message) === 404) {
             res.status(404).json(
               `Could not find lyrics for ${music['song' + (i + 1).toString()]} by ${music['artist' + (i + 1).toString()]}`
-            ).end();
+            );
           }
         });
 
@@ -26,7 +26,8 @@ const get = async (req, res, next) => {
         lyricsList.push({
           artist: music['artist' + (i + 1).toString()],
           song: music['song' + (i + 1).toString()],
-          lyrics: lyricsHelper.convertLyricsToSentences(lyrics),
+          lyrics: lyrics,
+          formattedLyrics: lyricsHelper.convertLyricsToSentences(lyrics),
         });
       } else {
         break;

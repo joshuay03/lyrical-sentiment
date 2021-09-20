@@ -1,9 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import Home from '../views/Home.vue';
 
 const routes = [
   {
     path: '/',
-    redirect: '/lyrics',
+    redirect: '/home',
+  },
+  {
+    path: '/home',
+    name: 'Home',
+    component: Home,
   },
   {
     path: '/lyrics',

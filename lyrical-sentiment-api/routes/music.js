@@ -5,10 +5,7 @@ const languageController = require('../controllers/languageController');
 
 router.get('/lyrics',
   musicController.get,
-  languageController.search,
-  (req, res) => {
-    res.status(200).json();
-  }
+  languageController.search
 );
 
 module.exports = router;
