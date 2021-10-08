@@ -141,7 +141,7 @@ export default {
       }
 
       axios
-        .get(`/music/lyrics?numSongs=${state.musicList.length}&${musicListQuery}`)
+        .get(`http://${window.location.hostname}:3000/music/lyrics?numSongs=${state.musicList.length}&${musicListQuery}`)
         .then((res) => {
           store.commit('updateData', res.data);
           router.push({ name: 'Lyrics' });
